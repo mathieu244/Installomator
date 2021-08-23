@@ -874,15 +874,6 @@ finishing() {
     sleep 10 # wait a moment to let spotlight catch up
     getAppVersion
 
-    if [[ (-n $licence ) ]]; then
-        printlog "Install licence"
-        if [[ $DEBUG -eq 0 ]]; then
-            $licence
-        else
-            printlog "DEBUG mode enabled, not running update tool"
-        fi
-    fi
-
     if [[ -z $appversion ]]; then
         message="Installed $name"
     else
@@ -3529,6 +3520,16 @@ case $type in
         cleanupAndExit 99
         ;;
 esac
+
+if [[ (-n $licence ) ]]; then
+    printlog "Install licence"
+    if [[ $DEBUG -eq 0 ]]; then
+        sleep 10 #wait a little more before licence running
+        $licence
+    else
+        printlog "DEBUG mode enabled, not running update tool"
+    fi
+fi
 
 # MARK: Finishing — print installed application location and version
 finishing
