@@ -3443,11 +3443,11 @@ if [[ -n $appNewVersion ]]; then
                     printlog "notifying"
                     displaynotification "$message" "No update for $name!"
                 fi
-                cleanupAndExit 0 "No newer version."
             else
                 printlog "Using force to install anyway."
+		cleanupAndExit 0 "No newer version."
             fi
-        else
+	else
             printlog "DEBUG mode enabled, not exiting, but there is no new version of app."
         fi
     fi
