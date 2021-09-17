@@ -306,6 +306,12 @@ versionFromGit() {
     gitreponame=${2?:"no git repo name"}
         
     appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/releases/latest" | grep tag_name | cut -d '"' -f 4 | sed 's/[^0-9\.]//g')
+    
+    # mathieu244 if no latest tag, try to get latest tag version
+    if [ -z "$appNewVersion" ]; then
+    	appNewVersion=$(curl --silent --fail "https://api.github.com/repos/$gitusername/$gitreponame/tags" | grep -Po '"name": "v\K.*?(?=")' | head -n 1)
+    fi
+    
     if [ -z "$appNewVersion" ]; then
         printlog "could not retrieve version number for $gitusername/$gitreponame"
         appNewVersion=""
