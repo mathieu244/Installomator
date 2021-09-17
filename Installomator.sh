@@ -2974,7 +2974,7 @@ vmwarefusion)
     #${variable:offset:length}
      appNewVersion="${fullVersionCode:4:2}.${fullVersionCode:6:1}.${fullVersionCode:7:1}"
      expectedTeamID="EG7KH642X6"
-     licence="applyVmwareLicence"
+     #licence="applyVmwareLicence"
      ;;
 androidstudio)
 #     # credit: Mathieu St-Yves (@mathieu244)
